@@ -33,19 +33,23 @@ defaults
 	errorfile 503 /etc/haproxy/errors/503.http
 	errorfile 504 /etc/haproxy/errors/504.http
 
-frontend  ehoneah-frontend-http
-        bind *:80
-        mode http
-	http-request set-header X-Forwarded-Proto http
-        default_backend ehoneah-backend
+frontend haproxy_balancer
+         bind *:80
+         mode http
+         http-request set-header X-Forwarded-Proto http
+         default_backend web-servers
 
-frontend ehoneah-frontend-https
-	bind *:443 ssl crt /etc/haproxy/certs/www.ehoneah.tech.pem
+frontend https
+	bind *:443 ssl crt /etc/letsencrypt/live/www.leworkalush2.tech/fullchain.pem
 	http-request set-header X-Forwarded-Proto https
 	http-request redirect scheme https code 301 unless { ssl_fc }
-	default_backend ehoneah-backend
+	default_backend letsencrypt-backend
 
-backend ehoneah-backend
+backend web-servers
         balance roundrobin
-        server 63210-web-01 54.237.15.91:80 check
-        server 63210-web-02 54.146.72.60:80 check
+        option forwardfor
+        server 189894-web-01 54.237.15.91:80 check
+        server 189894-web-02 54.146.72.60:80 check
+
+backend letsencrypt-backend
+        server letsencrypt 127.0.0.1:54321
