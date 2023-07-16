@@ -1,0 +1,74 @@
+What’s a Server?
+A computer program or device that offers a service to another computer program and its user, also known as the client, is referred to as a server. The client-server model is the name of this architecture.
+
+The client-server model
+Usually, the 'entity' asking for information is the client. Clients are often the internet user's computers, laptops, or phones that are connected to Wi-Fi or a mobile network, as well as any web browsers like Google Chrome, Firefox, or Safari that are installed on those devices. In our case, the browser and the typing device we are using are the clients( using to type in www.google.com).
+
+The 'thing' that sends or serves information to the client is known as the server. They keep websites, apps, or webpages. It would be the Google server in our situation.
+
+A client device that wants to access a webpage sends a request to the server for a copy of the webpage, which is subsequently downloaded to the client and shown in the user's web browser.
+
+The Phonebook of the Internet
+We require Domain Name System (DNS) servers because when we type the website name or address — or more precisely, a URL, like https://www.google.com — into our browser and hit Enter, the first thing the browser does is split the URL up. Yet first...we must know about URL.
+What is a URL?
+Uniform Resource Locator, or URL, is the term used to access a website. A URL is made up of various components, including the protocol, hostname, port number, path and file names, and more. In this blog post, we'll examine the hostname and hostname. In the case of https://www.google.com: www.google.com is the hostname, which can be a domain name like in this case or also an IP address, and https is the protocol (more on that later).
+
+DNS
+Consider the Domain Name System (DNS) as the internet's phonebook! DNS servers are application servers that translate human-friendly domain names into computer-friendly IP addresses. Each internet-connected device has a distinct IP address that other computers can use to find the device.
+There are 4 steps (and servers) involved in this procedure known as DNS resolution or DNS lookup when loading a webpage:
+
+The first is stop the DNS recursor. It's a server made to take requests from customers using programs like web browsers. If the IP address is already on file with this server, it will simply be returned. Otherwise, it will be in charge of submitting a query to the root DNS server and performing additional requests.
+The root server, also known as the root nameserver, does not know the hostname but knows where to get it, thus it will direct queries to the correct TLD server.
+
+The next part of a hostname is hosted by the TLD (Top Level Domain), which is the next stage in the process of finding an IP address. The TLD server for google.com is "com". The authoritative nameserver is then contacted with the request.
+The final stop in the nameserver query is the authoritative nameserver. If the requested record is available on this server, it will transmit the requested hostname's IP address back to the DNS recursor that made the initial request; otherwise, it will provide an error message stating that the record was not found.
+
+Internet Protocol Suite
+Now that the browser has located www.google.com, it is time to establish a connection and access the specified website. Browsers use internet protocols to build such connections.
+
+The most popular protocol used for many different forms of HTTP requests is Internet Protocol Suite, also known as TCP/IP (TCP stands for Transmission Control Protocol). It is a collection of guidelines that control the structure of data transferred over a local or public network, including when sending emails, streaming films, or connecting to a website.
+Traffic and Security Control
+The time has come to start sending data after the TCP connection has been established! But hold on, we need some traffic control first. Please welcome the load balancer.
+
+A server called a load balancer, such as HAProxy, aids in managing increased online traffic and preventing outages. In order to prevent any one server from becoming overloaded with requests, the load balancer receives traffic from the internet and then distributes it among several servers.
+Load balancers are crucial for heavily visited websites like google.com! Can anyone enter, though? That's what a firewall is there for.
+
+A firewall is a piece of hardware or software that prevents unauthorized users from accessing or leaving private networks. Between the most vulnerable network, such as the internet, and a secured internal network, it serves as a barrier. A specific set of security constraints, such as limitations on the IP address of the request, the quantity and regularity of the requests, or the kind of content being sought, are used to determine whether to let the traffic or not. A firewall is a load balancer. To avoid SPOF (single point of failure), you can build separate firewalls, which will provide you with additional security and protection.
+
+SSL
+
+In the modern digital world, SSL security is essential, so we have added security measures in place utilizing Secure Socket Layer (SSL).
+
+SSL is a protocol for servers and web browsers that ensures the privacy of data transferred between them. A SSL certificate, a short data file that cryptographically creates an encrypted link between a web server and a browser, is used to do this. By using this link, you can be sure that no information is shared outside of the web server and browser.
+
+When transmitting credit card numbers or other private, sensitive information, SSL is especially helpful because it prevents anyone who might be eavesdropping from deciphering the data.
+
+What indicators are there that a website is using an SSL certificate? Simple, just visit the url.
+What is an SSL certificate, and how can you tell whether a website is utilizing one? It's simple; simply glance at the url. If you see the padlock and https:// instead of http, your privacy is secure. However, what is HTTP/HTTPS?
+
+HTTP/HTTPS
+Which is it?
+The World Wide Web uses HTTP, or HyperText Transfer Protocol, which is arguably the most well-liked application protocol. We browser and web server communicate through it. It is a text-based protocol that has no state.
+The difference between HTTPS and HTTP is security. The extra letter, S, denotes security and, as was already established, indicates that an SSL certificate is being used.
+
+Status codes for HTTP requests and responses
+There are numerous possible mechanisms for HTTP requests.
+
+To retrieve data from a web server, use GET.
+Data is sent from a web server via POST.
+To update data from a web server, use PUT.
+A web server's DELETE command is used to remove data.
+A response to an HTTP request is always sent, at the very least with a status code stating whether the request was successful or not. The most well-liked status codes include:
+Informational responses (100–199)
+Successful responses (200–299)
+Redirection messages (300–399)
+Client error responses (400–499)
+Server error responses (500–599)
+Web and Application Servers
+A web server is computer software and the underlying hardware that processes HTTP/HTTPS requests and serves static content, or content that never changes, such as plain text files, graphics, or basic HTML pages. The task of the web server is to locate material that matches the requested website URL and to send it as an HTTP/HTTPS response. Web servers include Nginx and Apache, for instance
+An application server is a piece of software that manages user data, communicates with database servers, and runs applications. It interacts with the web servers and can use the static web server content to offer a dynamic application.
+
+Database
+The database server, which comprises of hardware and software to run a database, is another essential part of the client-server computer architecture. A database is a collection of data, and the application that interacts with the database to obtain, add, and alter data in it is known as a database server. Relational databases and non-relational databases are the two basic types. Some of the most widely used relational databases include PostgreSQL, MySQL, SQLite, and MariaDB.
+Conclusion
+All of these tasks, including sending and receiving data and reactions, take place quickly, sometimes even without our awareness. However, each time we type www.google.com, these procedures must be completed. I hope that this article has given you a better knowledge of how www.google.com is processed.
